@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import '../styles/main.css';
+import '../styles/contact.css';
 import initiale from '../images/initiale2.png'
 import Home from '../screens/HomeScreen';
 
@@ -11,10 +12,9 @@ const About = () => <h2>About</h2>;
 const AppRouter = () => (
     <Router>
         <>
-
             <header id="header">
                 <div className="inner">
-                    <Link to='/' component={Home} className="logo App-logo-directional"><img height={80} src={initiale} /></Link>
+                    <Link to='/' className="logo App-logo-directional"><img alt='initiale' height={80} src={initiale} /></Link>
                     <nav id="nav">
                         <a href="#banner">Accueil</a>
                         <a href="#one">A propos</a>
