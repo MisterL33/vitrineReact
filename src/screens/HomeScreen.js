@@ -3,13 +3,43 @@ import logoNautix from '../images/vague-02.png';
 import logoTaupe from '../images/logo.png';
 import pointeur from '../images/doigt.png';
 import laurent from '../images/laurent.jpg';
+import Modal from 'react-modal';
+import taupePresentation from '../images/taupedefensevitrine.png'
+
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
+  Modal.setAppElement('#root')  
+
 class Home extends Component {
 
     state = {
         email: '',
-        message: ''
+        message: '',
+        modalIsOpen: false,
     }
 
+
+    openModal = () => {
+        this.setState({modalIsOpen: true});
+      }
+    
+      afterOpenModal = () => {
+        // references are now sync'd and can be accessed.
+        //this.subtitle.style.color = '#f00';
+      }
+    
+      closeModal = () => {
+        this.setState({modalIsOpen: false});
+      }
+    
 
     componentDidMount() {
         this.callBackendAPI()
@@ -54,7 +84,17 @@ class Home extends Component {
     render() {
         return (
             <>
-
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          contentLabel="Presentation taupedefense"
+        >
+        <div style={{height:"100%", textAlign:"center"}}>
+        <img src={taupePresentation} height="90%" width="100%" alt="taupe presentation" />
+        <button style={{height:"10%"}} onClick={this.closeModal}>Fermer</button>
+        </div>
+        </Modal>
                 <section id="two" className="wrapper style1 special">
                     <div className="inner">
                         <div className="flex flex-4">
@@ -149,7 +189,7 @@ class Home extends Component {
                                 <p>TaupeDefense est un projet scolaire créer lors de l'année de M2, c'est un petit jeu de tape-taupe en ligne avec plusieurs participants possible, le challenge pour ce projet était que l'on avais que 10 jours de cours pour le mener à bien. </p>
                                 <footer>
                                     <img alt='pointeur' className="pointeur" src={pointeur} height={50} />
-                                    <a className="button special">En savoir plus</a>
+                                    <a onClick={this.openModal} className="button special">En savoir plus</a>
                                 </footer>
                             </article>
                         </div>
