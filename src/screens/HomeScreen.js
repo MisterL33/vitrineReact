@@ -59,7 +59,7 @@ class Home extends Component {
 
     handleSendMail = async () => {
         const mail = { mail: { "address": this.state.email, "message": this.state.message } }
-        const res = await fetch('http://localhost:5000/send', {
+        const res = await fetch('http://juliennesoftware.alwaysdata.net/vitrineApi/mailFactory.php/mail/', {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json'
